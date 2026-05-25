@@ -26,6 +26,18 @@
   --font-head: 'Hanken Grotesk', system-ui, sans-serif;
   --font-body: 'Hanken Grotesk', system-ui, sans-serif;
   --font-mono: 'Hanken Grotesk', system-ui, sans-serif;
+
+  --type-heading-xl: clamp(40px, 5vw, 84px);
+  --type-heading-lg: clamp(28px, 4vw, 56px);
+  --type-heading-md: clamp(24px, 3vw, 36px);
+  --type-heading-sm: clamp(20px, 2.2vw, 32px);
+  --type-heading-xs: 18px;
+
+  --type-t1: 20px;
+  --type-t2: 18px;
+  --type-t3: 16px;
+  --type-ui: 13px;
+  --type-label: 11px;
 }
 
 *, *::before, *::after {
@@ -50,7 +62,7 @@ img { display: block; max-width: 100%; }
 /* ============== UTIL ============== */
 .mono {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--type-label);
   letter-spacing: 0.04em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -114,7 +126,7 @@ img { display: block; max-width: 100%; }
 .section-title {
   font-family: var(--font-head);
   font-weight: 500;
-  font-size: clamp(28px, 4vw, 56px);
+  font-size: var(--type-heading-lg);
   line-height: 0.9;
   letter-spacing: -0.04em;
   color: var(--primary);
@@ -178,7 +190,7 @@ img { display: block; max-width: 100%; }
 
 .nav-links a {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 500;
   color: var(--text-dim);
   text-decoration: none;
@@ -191,7 +203,7 @@ img { display: block; max-width: 100%; }
 .nav-cta {
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 13px;
+  font-size: var(--type-ui);
   letter-spacing: -0.01em;
   color: var(--bg);
   background: var(--primary);
@@ -265,7 +277,7 @@ img { display: block; max-width: 100%; }
   top: -10px;
   z-index: 6;
   font-family: var(--font-body);
-  font-size: clamp(15px, 1.3vw, 20px);
+  font-size: var(--type-t2);
   font-weight: 500;
   letter-spacing: 0.14em;
   color: rgba(255,255,255,0.88);
@@ -297,7 +309,7 @@ img { display: block; max-width: 100%; }
 .hero-desc {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: clamp(15px, 1.22vw, 18px);
+  font-size: var(--type-t2);
   line-height: 1.6;
   color: rgba(255,255,255,0.86);
   max-width: 560px;
@@ -321,7 +333,7 @@ img { display: block; max-width: 100%; }
 .btn {
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--type-t3);
   letter-spacing: -0.005em;
   border: none;
   padding: 16px 28px;
@@ -389,7 +401,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.2em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -409,10 +421,10 @@ img { display: block; max-width: 100%; }
   .hero::after { right: 24px; }
   .hero-corner.tl, .hero-corner.bl { left: 16px; }
   .hero-corner.tr, .hero-corner.br { right: 16px; }
-  .hero-date { margin-bottom: 20px; font-size: 13px; }
+  .hero-date { margin-bottom: 20px; font-size: var(--type-ui); }
   .hero-center { gap: 16px; padding-top: 50px; }
   .hero-logo-img { width: min(76vw, 380px); }
-  .hero-desc { max-width: 330px; font-size: 14px; }
+  .hero-desc { max-width: 330px; font-size: var(--type-t3); }
   .hero-actions { gap: 10px; }
   .hero-scroll { margin-top: 34px; }
 }
@@ -444,7 +456,7 @@ img { display: block; max-width: 100%; }
 
 .stat-idx {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   color: var(--text-muted);
   letter-spacing: 0.04em;
   display: flex;
@@ -470,7 +482,7 @@ img { display: block; max-width: 100%; }
 
 .stat-text {
   font-family: var(--font-body);
-  font-size: 20px;
+  font-size: var(--type-t1);
   line-height: 1.55;
   color: var(--text-dim);
   max-width: 300px;
@@ -528,7 +540,7 @@ img { display: block; max-width: 100%; }
 
 .what-stat-text {
   font-family: var(--font-body);
-  font-size: 20px;
+  font-size: var(--type-t1);
   line-height: 1.5;
   color: var(--text-dim);
 }
@@ -636,7 +648,7 @@ img { display: block; max-width: 100%; }
 .tag-box {
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(18px, 2.2vw, 32px);
+  font-size: var(--type-heading-sm);
   letter-spacing: -0.02em;
   color: var(--neutral);
   text-transform: uppercase;
@@ -697,7 +709,7 @@ img { display: block; max-width: 100%; }
 .who-block-title {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(20px, 2.4vw, 34px);
+  font-size: var(--type-heading-sm);
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--neutral);
@@ -711,7 +723,7 @@ img { display: block; max-width: 100%; }
 
 .who-row {
   font-family: var(--font-body);
-  font-size: clamp(13px, 1.2vw, 16px);
+  font-size: var(--type-t1);
   color: var(--text-dim);
   padding: 10px 0;
   line-height: 1.4;
@@ -742,7 +754,7 @@ img { display: block; max-width: 100%; }
 
 .who-benefit-row {
   font-family: var(--font-body);
-  font-size: clamp(13px, 1.2vw, 16px);
+  font-size: var(--type-t1);
   color: var(--text-dim);
   padding: 10px 0;
   line-height: 1.5;
@@ -797,7 +809,7 @@ img { display: block; max-width: 100%; }
 
 .program-prompt-label {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: var(--type-ui);
   letter-spacing: 0.2em;
   color: var(--text-dim);
   text-transform: uppercase;
@@ -876,7 +888,7 @@ img { display: block; max-width: 100%; }
 
 .route-time {
   font-family: var(--font-head);
-  font-size: clamp(18px, 2.2vw, 34px);
+  font-size: var(--type-heading-sm);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--primary);
@@ -888,7 +900,7 @@ img { display: block; max-width: 100%; }
 
 .route-text {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: var(--type-t1);
   line-height: 1.55;
   color: var(--text-dim);
   max-width: 380px;
@@ -897,7 +909,7 @@ img { display: block; max-width: 100%; }
 .route-place {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   color: var(--text-muted);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1034,7 +1046,7 @@ img { display: block; max-width: 100%; }
   position: absolute;
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(28px, 3.4vw, 56px);
+  font-size: var(--type-heading-lg);
   letter-spacing: -0.02em;
   color: var(--neutral);
   text-transform: uppercase;
@@ -1090,7 +1102,7 @@ img { display: block; max-width: 100%; }
 .values-center-word {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(19px, 2.3vw, 29px);
+  font-size: var(--type-heading-xs);
   letter-spacing: -0.03em;
   text-transform: uppercase;
   text-align: center;
@@ -1187,7 +1199,7 @@ img { display: block; max-width: 100%; }
   .values-mobile-words .v-word {
     font-family: var(--font-head);
     font-weight: 800;
-    font-size: 42px;
+    font-size: var(--type-heading-xl);
     letter-spacing: -0.03em;
     color: var(--neutral);
     text-transform: uppercase;
@@ -1216,7 +1228,7 @@ img { display: block; max-width: 100%; }
 
 .about-cell .cell-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   color: var(--text-muted);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1225,7 +1237,7 @@ img { display: block; max-width: 100%; }
 .about-cell .cell-value {
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 18px;
+  font-size: var(--type-heading-xs);
   letter-spacing: -0.01em;
   color: var(--neutral);
 }
@@ -1242,7 +1254,7 @@ img { display: block; max-width: 100%; }
 .about-big h3 {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(40px, 5vw, 84px);
+  font-size: var(--type-heading-xl);
   line-height: 0.92;
   letter-spacing: -0.035em;
   color: var(--neutral);
@@ -1259,7 +1271,7 @@ img { display: block; max-width: 100%; }
 .about-quote-cell .q {
   font-family: var(--font-head);
   font-weight: 500;
-  font-size: 17px;
+  font-size: var(--type-t3);
   line-height: 1.4;
   color: var(--neutral);
   letter-spacing: -0.01em;
@@ -1285,7 +1297,7 @@ img { display: block; max-width: 100%; }
 .about-cta-cell h4 {
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(20px, 2vw, 32px);
+  font-size: var(--type-heading-sm);
   letter-spacing: -0.02em;
   color: var(--neutral);
 }
@@ -1341,7 +1353,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: var(--type-label);
   letter-spacing: 0.16em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -1365,7 +1377,7 @@ img { display: block; max-width: 100%; }
 
 .partner-role {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.04em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -1373,7 +1385,7 @@ img { display: block; max-width: 100%; }
 
 .partner-desc {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: var(--type-t3);
   line-height: 1.55;
   color: var(--text-dim);
   max-width: 420px;
@@ -1389,7 +1401,7 @@ img { display: block; max-width: 100%; }
 
 .partner-tag {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.04em;
   color: var(--text-dim);
   padding: 4px 12px 4px 0;
@@ -1413,12 +1425,23 @@ img { display: block; max-width: 100%; }
 .manifesto-tagline {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(18px, 2.2vw, 34px);
+  font-size: var(--type-heading-sm);
   line-height: 1.3;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--neutral);
   margin-bottom: 0;
+}
+
+.manifesto-lead,
+.manifesto-route-copy,
+.manifesto-note {
+  display: block;
+}
+
+.manifesto-lead,
+.manifesto-route-copy {
+  margin-bottom: 18px;
 }
 
 .manifesto-main em {
@@ -1451,7 +1474,7 @@ img { display: block; max-width: 100%; }
 .form-info h3 {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(36px, 4vw, 56px);
+  font-size: var(--type-heading-lg);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--neutral);
@@ -1461,7 +1484,7 @@ img { display: block; max-width: 100%; }
 
 .form-info p {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: var(--type-t3);
   line-height: 1.55;
   color: var(--text-dim);
   max-width: 380px;
@@ -1485,7 +1508,7 @@ img { display: block; max-width: 100%; }
 
 .form-contact .label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.04em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -1494,7 +1517,7 @@ img { display: block; max-width: 100%; }
 .form-contact .value {
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 17px;
+  font-size: var(--type-t3);
   letter-spacing: -0.01em;
   color: var(--neutral);
   text-decoration: none;
@@ -1519,7 +1542,7 @@ a.value:hover { color: var(--primary); }
 
 .field label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.04em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -1528,7 +1551,7 @@ a.value:hover { color: var(--primary); }
 .field input {
   font-family: var(--font-head);
   font-weight: 500;
-  font-size: 18px;
+  font-size: var(--type-t2);
   color: var(--neutral);
   background: transparent;
   border: none;
@@ -1540,7 +1563,7 @@ a.value:hover { color: var(--primary); }
 
 .field.error input { color: var(--primary); }
 .field-error,
-.field-hint { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--primary); text-transform: uppercase; margin-top: 2px; }
+.field-hint { font-family: var(--font-mono); font-size: var(--type-label); letter-spacing: 0.04em; color: var(--primary); text-transform: uppercase; margin-top: 2px; }
 
 .field-row {
   display: grid;
@@ -1589,12 +1612,12 @@ a.value:hover { color: var(--primary); }
   place-items: center;
   color: var(--bg);
   font-weight: 700;
-  font-size: 13px;
+  font-size: var(--type-ui);
 }
 
 .checkbox label {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: var(--type-ui);
   line-height: 1.5;
   color: var(--text-dim);
   cursor: pointer;
@@ -1608,7 +1631,7 @@ a.value:hover { color: var(--primary); }
 .form-submit {
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--type-t3);
   letter-spacing: -0.01em;
   background: var(--primary);
   color: var(--bg);
@@ -1636,7 +1659,7 @@ a.value:hover { color: var(--primary); }
   border: 1px solid var(--primary);
   background: rgba(231, 240, 175, 0.08);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: var(--type-t3);
   line-height: 1.6;
   color: var(--primary);
 }
@@ -1650,7 +1673,7 @@ a.value:hover { color: var(--primary); }
   margin-bottom: 14px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: var(--type-heading-md);
   line-height: 1;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -1741,7 +1764,7 @@ a.value:hover { color: var(--primary); }
 
 .footer-cell .label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   letter-spacing: 0.04em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -1751,7 +1774,7 @@ a.value:hover { color: var(--primary); }
 .footer-cell a.value {
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 17px;
+  font-size: var(--type-t3);
   letter-spacing: -0.01em;
   color: var(--neutral);
   text-decoration: none;
@@ -1765,7 +1788,7 @@ a.value:hover { color: var(--primary); }
   align-items: center;
   padding-top: 32px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: var(--type-label);
   color: var(--text-muted);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2846,7 +2869,7 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
           <div class="route-stop reveal" style="--d:0.32s">
             <div class="route-num">05</div>
             <div class="route-time">14:30 — 16:00</div>
-            <div class="route-text">Сменим локацию и&nbsp;отправимся<br>на&nbsp;дневной фуршет в&nbsp;панорамном шатре</div>
+            <div class="route-text">Сменим локацию и&nbsp;отправимся<br>на&nbsp;дневной фуршет<br>в&nbsp;панорамном шатре</div>
           </div>
 
           <div class="route-stop reveal" style="--d:0.4s">
@@ -2913,11 +2936,9 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
   <div class="section-inner">
     <div class="manifesto-block">
       <div class="manifesto-main reveal">
-        На теплоходе <em>музыка и… мы.</em><br>
-        Проплывём маршрут<br>
-        по Неве из Петербурга<br>
-        в Петергоф — и назад.<br>
-        <span style="color:rgba(255,255,255,0.28);">На судне всё включено: гостеприимство, приятные попутчики, щедрые порции кулебяк из лосося от шеф-повара и калорийная программа</span>
+        <span class="manifesto-lead">На теплоходе <em>музыка и… мы.</em></span>
+        <span class="manifesto-route-copy">Проплывём маршрут<br>по Неве из Петербурга<br>в Петергоф — и назад.</span>
+        <span class="manifesto-note" style="color:rgba(255,255,255,0.28);">На судне всё включено: гостеприимство, приятные попутчики, щедрые порции кулебяк из лосося от шеф-повара и калорийная программа</span>
       </div>
     </div>
   </div>
@@ -3023,7 +3044,7 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-row">
-      <div class="footer-cell-left">
+      <div class="footer-cell footer-cell-left">
         <span class="label">Дата</span>
         <span class="value">17 июля 2026</span>
       </div>
