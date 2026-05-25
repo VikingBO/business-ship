@@ -1,0 +1,11 @@
+{
+  "name": "business-ship",
+  "private": true,
+  "scripts": {
+    "typograf": "node scripts/typografize.js index.html"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "typograf": "^7.7.0"
+  }
+}
