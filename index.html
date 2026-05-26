@@ -1764,6 +1764,229 @@ a.value:hover { color: var(--primary); }
   .hero-motion-group { display: none; }
 }
 
+/* ============== MOBILE ADAPTATION (≤768 / ≤480 / ≤375) ============== */
+
+/* Tablet & below */
+@media (max-width: 768px) {
+  /* Section paddings tighter */
+  .section { padding: 48px 20px; }
+  .section::before { left: 20px; }
+  .section::after { right: 20px; }
+  .section-head { margin-bottom: 40px; }
+
+  /* Nav */
+  .nav { padding: 12px 20px; gap: 12px; }
+  .nav-cta { padding: 10px 14px; font-size: 12px; }
+  .nav-logo img { height: 18px; }
+
+  /* Hero */
+  .hero { padding: 64px 20px 16px; min-height: 90vh; }
+  .hero::before { left: 20px; }
+  .hero::after { right: 20px; }
+  .hero-actions { gap: 8px; width: 100%; }
+  .hero-actions .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+
+  /* What — stat cards stack */
+  .what-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 40px; }
+  .stat { min-height: auto; padding: 24px 20px; gap: 14px; }
+  .stat-num { font-size: clamp(56px, 14vw, 80px); }
+  .stat-text { font-size: var(--type-t3); max-width: none; }
+
+  /* Tag grid: 4 → 2 columns */
+  .tag-grid { grid-template-columns: repeat(2, 1fr); margin-top: 24px; }
+  .tag-box { padding: 22px 12px; font-size: 18px; }
+
+  /* Who */
+  .who-block { padding: 24px 20px; }
+  .who-block-title { margin-bottom: 14px; font-size: 20px; }
+  .who-row, .who-benefit-row { font-size: 17px; padding: 8px 0; }
+  .who-image-col { padding: 24px 20px; }
+  .who-image-col img { max-width: 240px; }
+
+  /* Program / route */
+  .route { padding: 32px 0 32px; }
+  .route-grid { row-gap: 24px; }
+  .route-time { font-size: 22px; }
+  .route-text { font-size: 16px; }
+  .route-text br { display: none; }
+
+  /* Manifesto */
+  .manifesto-block { padding: 8px 0 40px; }
+  .manifesto-main,
+  .manifesto-route,
+  .manifesto-tagline {
+    font-size: 22px;
+    line-height: 1.25;
+  }
+  .manifesto-lead,
+  .manifesto-route-copy { margin-bottom: 14px; }
+  .manifesto-route-copy br,
+  .manifesto-note br { display: none; }
+
+  /* Partners — real layout used in markup is .partners-layout */
+  .partners-layout {
+    grid-template-columns: 1fr;
+  }
+  .partner-simple { padding: 32px 20px; gap: 20px; }
+  .partner-desc { font-size: 14px; max-width: none; }
+  .partner-logo-img { height: 44px; }
+  .partner-logo-img.gazprom { height: 36px; margin-left: 0; }
+  .partner-logo-img.t1 { height: 28px; }
+  .partner-ship-col {
+    order: 3;
+    padding: 16px;
+    transform: none;
+  }
+  .partner-ship-col img { width: 140px; }
+
+  /* Form */
+  .form-grid { grid-template-columns: 1fr; gap: 28px; }
+  .form-info h3 { font-size: clamp(26px, 6vw, 36px); }
+  .form-info p { max-width: none; }
+  .field { padding: 14px 0; }
+  .field input { font-size: 16px; /* avoid iOS auto-zoom */ }
+  .form-submit {
+    width: 100%;
+    padding: 18px 24px;
+    justify-content: space-between;
+  }
+  .form-contact { grid-template-columns: 80px 1fr; gap: 16px; padding: 14px 0; }
+  .form-badge-note { font-size: 14px; }
+
+  /* Footer */
+  .footer { padding: 48px 20px 24px; }
+  .footer-brand { margin-bottom: 32px; padding-bottom: 24px; }
+  .footer-brand img { height: 40px; }
+  .footer-row { grid-template-columns: 1fr; gap: 20px; padding: 24px 0; }
+  .footer-row::after { display: none; }
+  .footer-cell-right { padding-left: 0; gap: 24px; flex-wrap: wrap; }
+  .footer-bottom { flex-direction: column; gap: 10px; align-items: flex-start; text-align: left; padding-top: 20px; }
+}
+
+/* Phones — 414 / 375 */
+@media (max-width: 480px) {
+  .section { padding: 40px 16px; }
+  .section::before { left: 16px; }
+  .section::after { right: 16px; }
+  .section-head { margin-bottom: 32px; gap: 12px; }
+  .section-title { font-size: clamp(26px, 8.5vw, 40px); }
+
+  /* Nav */
+  .nav { padding: 10px 16px; }
+  .nav-cta {
+    padding: 8px 12px;
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+  .nav-cta svg { width: 12px; height: 12px; }
+
+  /* Hero */
+  .hero { padding: 56px 16px 12px; }
+  .hero::before { left: 16px; }
+  .hero::after { right: 16px; }
+  .hero-corner.tl, .hero-corner.bl { left: 8px; }
+  .hero-corner.tr, .hero-corner.br { right: 8px; }
+  .hero-date {
+    font-size: 12px;
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
+  }
+  .hero-center { gap: 14px; padding-top: 32px; transform: translateY(-30px); }
+  .hero-logo-img { width: min(80vw, 320px); }
+  .hero-desc { font-size: 15px; max-width: 100%; padding: 0 6px; }
+  .btn { padding: 14px 18px; font-size: 14px; }
+  .hero-scroll { margin-top: 24px; font-size: 10px; padding-bottom: 16px; }
+
+  /* What */
+  .stat-num { font-size: clamp(52px, 16vw, 72px); }
+  .stat-num .unit { font-size: 0.32em; }
+  .stat-text { font-size: 15px; }
+  .tag-box { padding: 18px 8px; font-size: 16px; }
+
+  /* Who */
+  .who-block { padding: 20px 16px; }
+  .who-image-col { padding: 16px; }
+  .who-image-col img { max-width: 200px; }
+  .who-row, .who-benefit-row { font-size: 15px; }
+
+  /* Program */
+  .route-grid { grid-template-columns: 28px 1fr; column-gap: 14px; row-gap: 20px; }
+  .route-stop::before { left: -22px; width: 12px; height: 12px; top: 22px; }
+  .route-time { font-size: 18px; }
+  .route-text { font-size: 14px; }
+  .route-place { font-size: 10px; }
+
+  /* Manifesto */
+  .manifesto-main,
+  .manifesto-route,
+  .manifesto-tagline { font-size: 18px; }
+
+  /* Partners */
+  .partner-simple { padding: 28px 16px; gap: 16px; }
+  .partner-desc { font-size: 13px; line-height: 1.5; }
+  .partner-tag { font-size: 10px; padding: 4px 8px 4px 0; margin-right: 8px; }
+
+  /* Form */
+  .form-grid { gap: 24px; }
+  .form-info h3 { font-size: 26px; line-height: 1; }
+  .form-info p { font-size: 14px; }
+  .form-contact { grid-template-columns: 70px 1fr; gap: 12px; }
+  .form-contact .value { font-size: 14px; }
+  .field label { font-size: 10px; }
+  .form-submit { padding: 16px 18px; font-size: 14px; }
+  .form-success { padding: 24px 16px; }
+  .form-success-title { font-size: 22px; }
+
+  /* Footer */
+  .footer { padding: 40px 16px 20px; }
+  .footer-brand img { height: 32px; }
+  .footer-cell-right { gap: 18px; }
+  .footer-cell .value { font-size: 14px; }
+}
+
+/* Extra-small phones — 320 / 360 */
+@media (max-width: 375px) {
+  .section { padding: 36px 14px; }
+  .section::before { left: 14px; }
+  .section::after { right: 14px; }
+  .section-title { font-size: clamp(22px, 8vw, 32px); }
+
+  .nav { padding: 8px 14px; gap: 8px; }
+  .nav-cta { padding: 7px 10px; }
+
+  .hero { padding: 48px 14px 8px; min-height: 88vh; }
+  .hero::before { left: 14px; }
+  .hero::after { right: 14px; }
+  .hero-logo-img { width: 78vw; }
+  .hero-desc { font-size: 14px; }
+  .btn { padding: 13px 16px; font-size: 13px; }
+
+  .tag-grid { grid-template-columns: 1fr 1fr; }
+  .tag-box { padding: 16px 6px; font-size: 14px; }
+
+  .stat { padding: 20px 16px; }
+  .stat-num { font-size: clamp(48px, 17vw, 64px); }
+
+  .who-image-col img { max-width: 170px; }
+
+  .route-time { font-size: 16px; }
+  .route-text { font-size: 13px; }
+
+  .manifesto-main,
+  .manifesto-route,
+  .manifesto-tagline { font-size: 16px; }
+
+  .form-info h3 { font-size: 22px; }
+  .field input { font-size: 16px; }
+  .form-submit { padding: 14px 16px; font-size: 13px; }
+
+  .footer-cell-right { flex-direction: column; gap: 14px; }
+}
+
 </style>
 <style>#inspect-element-top-layer * { all: unset; }</style><script>"use strict";
 
