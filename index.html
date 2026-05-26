@@ -1891,13 +1891,13 @@ a.value:hover { color: var(--primary); }
   left: 72px;
   bottom: 88px;
   z-index: 3;
-  pointer-events: none;
+  pointer-events: auto;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
-.hero-route-label span {
+.hero-route-label > span {
   font-family: var(--font-head);
   font-size: var(--type-heading-sm);
   font-weight: 800;
@@ -1909,11 +1909,11 @@ a.value:hover { color: var(--primary); }
   animation: hero-waterfall 4.5s ease-in-out infinite;
 }
 
-.hero-route-label span:nth-child(1) { --base-op: 0.55; animation-delay: 0s; }
-.hero-route-label span:nth-child(2) { --base-op: 0.42; animation-delay: 0.6s; }
-.hero-route-label span:nth-child(3) { --base-op: 0.30; animation-delay: 1.2s; }
-.hero-route-label span:nth-child(4) { --base-op: 0.18; animation-delay: 1.8s; }
-.hero-route-label span:nth-child(5) { --base-op: 0.10; animation-delay: 2.4s; }
+.hero-route-label > span:nth-child(1) { --base-op: 0.55; animation-delay: 0s; }
+.hero-route-label > span:nth-child(2) { --base-op: 0.42; animation-delay: 0.6s; }
+.hero-route-label > span:nth-child(3) { --base-op: 0.30; animation-delay: 1.2s; }
+.hero-route-label > span:nth-child(4) { --base-op: 0.18; animation-delay: 1.8s; }
+.hero-route-label > span:nth-child(5) { --base-op: 0.10; animation-delay: 2.4s; }
 
 @keyframes hero-waterfall {
   0%   { opacity: var(--base-op); }
@@ -1924,6 +1924,21 @@ a.value:hover { color: var(--primary); }
 
 @media (max-width: 800px) {
   .hero-route-text { left: 24px; bottom: 60px; width: clamp(100px, 22vw, 160px); }
+}
+
+/* ── Water ripple on hero label chars ── */
+.hero-route-label .char {
+  display: inline-block;
+  white-space: pre;
+  transition: transform 0s;
+}
+
+@keyframes char-ripple {
+  0%   { transform: translateY(0); }
+  20%  { transform: translateY(-10px); }
+  50%  { transform: translateY(4px); }
+  75%  { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
 }
 </style>
 <style>#inspect-element-top-layer * { all: unset; }</style><script>"use strict";
@@ -3426,28 +3441,29 @@ window.addEventListener('resize', updateWhoCreature);
 (function () {
   const group  = document.getElementById('heroMotionGroup');
   const heroEl = document.querySelector('.hero');
-  const footer = document.querySelector('.footer');
-  if (!group || !heroEl || !footer) return;
+  const whatEl = document.querySelector('#what');
+  if (!group || !heroEl || !whatEl) return;
 
-  function getMaxHeroParallax(offset) {
-    const heroTop = heroEl.getBoundingClientRect().top + window.scrollY;
-    const footerTop = footer.getBoundingClientRect().top + window.scrollY;
-    return Math.max(0, footerTop - heroTop - offset);
-  }
-
-  // ждём конца CSS анимации (0.6s delay + 2.4s duration = 3s)
-  // потом снимаем CSS анимацию и берём управление через JS
   group.addEventListener('animationend', () => {
     group.style.animation = 'none';
 
-    let currentY = 0; // стартуем с 0 — плавно догоняем реальный скролл
+    let currentY = 0;
 
     function tick() {
-      const maxY = getMaxHeroParallax(280);
-      const targetY = Math.min(window.scrollY * 1.3, maxY);
-      currentY += (targetY - currentY) * 0.12; // lerp — нет резкого прыжка
+      const heroH   = heroEl.offsetHeight;
+      const fadeStart = heroH * 0.5;   // начинаем растворять с середины героя
+      const fadeEnd   = heroH * 0.95;  // полностью прозрачен к концу героя
+
+      const sy = window.scrollY;
+      const targetY = Math.min(sy * 1.3, heroH * 0.8);
+      currentY += (targetY - currentY) * 0.12;
+
+      const opacity = sy <= fadeStart ? 1
+        : sy >= fadeEnd ? 0
+        : 1 - (sy - fadeStart) / (fadeEnd - fadeStart);
+
       group.style.transform = `translateX(100px) translateY(${currentY.toFixed(2)}px)`;
-      group.style.opacity   = '1';
+      group.style.opacity   = opacity.toFixed(3);
       requestAnimationFrame(tick);
     }
     tick();
@@ -3608,4 +3624,58 @@ function handleSubmit(e) {
 
 
 
-<div id="inspect-element-top-layer" popover="auto" data-inspect-element="inspectElement" style="pointer-events: none; border: unset; padding: 0px;"></div></body></html>
+<div id="inspect-element-top-layer" popover="auto" data-inspect-element="inspectElement" style="pointer-events: none; border: unset; padding: 0px;"></div>
+
+<script>
+// ── Water ripple on hero label ──
+(function () {
+  const label = document.querySelector('.hero-route-label');
+  if (!label) return;
+
+  label.querySelectorAll(':scope > span').forEach(line => {
+    const text = line.textContent;
+    line.textContent = '';
+    [...text].forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'char';
+      s.textContent = ch;
+      line.appendChild(s);
+    });
+  });
+
+  const chars = [...label.querySelectorAll('.char')];
+  let lastIndex = -1;
+
+  function rippleFrom(index) {
+    chars.forEach((ch, i) => {
+      const dist = Math.abs(i - index);
+      if (dist > 6) return;
+      ch.style.animation = 'none';
+      void ch.offsetWidth;
+      ch.style.animation = `char-ripple 0.55s ease-out ${dist * 40}ms both`;
+    });
+  }
+
+  const hero = document.querySelector('.hero');
+  const THRESHOLD = 60;
+
+  (hero || document).addEventListener('mousemove', e => {
+    const mx = e.clientX, my = e.clientY;
+    let closest = -1, minDist = Infinity;
+
+    chars.forEach((ch, i) => {
+      const r = ch.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top  + r.height / 2;
+      const d  = Math.hypot(mx - cx, my - cy);
+      if (d < minDist) { minDist = d; closest = i; }
+    });
+
+    if (closest === -1 || minDist > THRESHOLD || closest === lastIndex) return;
+    lastIndex = closest;
+    rippleFrom(closest);
+  });
+})();
+</script>
+
+</body></html>
