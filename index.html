@@ -1301,6 +1301,33 @@ img { display: block; max-width: 100%; }
 /* ============== MANIFESTO ============== */
 .manifesto-block {
   padding: 20px 0 80px;
+  position: relative;
+}
+
+.manifesto-ship {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(calc(-50% - 50px));
+  width: 62%;
+  max-width: 832px;
+  pointer-events: none;
+}
+
+.manifesto-ship img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .manifesto-ship {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 24px;
+  }
 }
 
 .manifesto-main {
@@ -2973,6 +3000,9 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
 <section class="section" id="about" style="border-top:none; padding-top:40px; padding-bottom:40px;">
   <div class="section-inner">
     <div class="manifesto-block">
+      <div class="manifesto-ship" aria-hidden="true">
+        <img src="./assets/As_vector.svg" alt="">
+      </div>
       <div class="manifesto-main reveal">
         <span class="manifesto-lead">На теплоходе <em>музыка и… мы.</em></span>
         <span class="manifesto-route-copy">Проплывем маршрут по Неве<br>из Петербурга в Петергоф — и назад.</span>
