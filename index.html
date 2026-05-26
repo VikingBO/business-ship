@@ -1301,11 +1301,12 @@ img { display: block; max-width: 100%; }
 /* ============== MANIFESTO ============== */
 .manifesto-block {
   padding: 20px 0 80px;
+  position: relative;
 }
 
-.manifesto-main,
-.manifesto-route,
-.manifesto-tagline {
+.manifesto-main {
+  position: relative;
+  z-index: 2;
   font-family: var(--font-head);
   font-weight: 800;
   font-size: var(--type-heading-sm);
@@ -1313,13 +1314,13 @@ img { display: block; max-width: 100%; }
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--neutral);
-  margin-bottom: 0;
 }
 
 .manifesto-lead,
 .manifesto-route-copy,
 .manifesto-note {
   display: block;
+  white-space: nowrap;
 }
 
 .manifesto-lead,
@@ -1332,12 +1333,38 @@ img { display: block; max-width: 100%; }
   color: var(--primary);
 }
 
-.manifesto-route {
-  color: rgba(255,255,255,0.45);
+.manifesto-ship {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 48%;
+  max-width: 560px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.manifesto-tagline {
-  color: rgba(255,255,255,0.28);
+.manifesto-ship img {
+  width: 100%;
+  height: auto;
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 12px 40px rgba(0,0,0,0.4));
+}
+
+@media (max-width: 900px) {
+  .manifesto-lead,
+  .manifesto-route-copy,
+  .manifesto-note {
+    white-space: normal;
+  }
+  .manifesto-ship {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 24px;
+  }
 }
 
 /* ============== FORM ============== */
@@ -1816,12 +1843,7 @@ a.value:hover { color: var(--primary); }
 
   /* Manifesto */
   .manifesto-block { padding: 8px 0 40px; }
-  .manifesto-main,
-  .manifesto-route,
-  .manifesto-tagline {
-    font-size: 22px;
-    line-height: 1.25;
-  }
+  .manifesto-main { font-size: 22px; line-height: 1.25; }
   .manifesto-lead,
   .manifesto-route-copy { margin-bottom: 14px; }
   .manifesto-route-copy br,
@@ -1921,9 +1943,7 @@ a.value:hover { color: var(--primary); }
   .route-place { font-size: 10px; }
 
   /* Manifesto */
-  .manifesto-main,
-  .manifesto-route,
-  .manifesto-tagline { font-size: 18px; }
+  .manifesto-main { font-size: 18px; }
 
   /* Partners */
   .partner-simple { padding: 28px 16px; gap: 16px; }
@@ -1976,9 +1996,7 @@ a.value:hover { color: var(--primary); }
   .route-time { font-size: 16px; }
   .route-text { font-size: 13px; }
 
-  .manifesto-main,
-  .manifesto-route,
-  .manifesto-tagline { font-size: 16px; }
+  .manifesto-main { font-size: 16px; }
 
   .form-info h3 { font-size: 22px; }
   .field input { font-size: 16px; }
@@ -2995,8 +3013,11 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
     <div class="manifesto-block">
       <div class="manifesto-main reveal">
         <span class="manifesto-lead">На теплоходе <em>музыка и… мы.</em></span>
-        <span class="manifesto-route-copy">Проплывем маршрут<br>по Неве из Петербурга<br>в Петергоф — и назад.</span>
-        <span class="manifesto-note" style="color:var(--primary);">На судне все включено: гостеприимство, приятные попутчики, щедрые порции кулебяк из лосося от шеф-повара<br>и калорийная программа</span>
+        <span class="manifesto-route-copy">Проплывем маршрут по Неве<br>из Петербурга в Петергоф — и назад.</span>
+        <span class="manifesto-note"><em>На судне все включено:</em><br>гостеприимство, приятные попутчики,<br>щедрые порции кулебяк из лосося<br>от шеф-повара и калорийная программа.</span>
+      </div>
+      <div class="manifesto-ship" aria-hidden="true">
+        <img src="./assets/Ship_ First Screen.svg" alt="">
       </div>
     </div>
   </div>
