@@ -1905,64 +1905,6 @@ a.value:hover { color: var(--primary); }
   .hero-motion-group { display: none; }
 }
 
-.hero-route-text {
-  display: none;
-}
-
-.hero-route-label {
-  position: absolute;
-  left: 72px;
-  bottom: 88px;
-  z-index: 3;
-  pointer-events: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.hero-route-label > span {
-  font-family: var(--font-head);
-  font-size: var(--type-heading-sm);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: white;
-  line-height: 1.3;
-  opacity: var(--base-op);
-  animation: hero-waterfall 4.5s ease-in-out infinite;
-}
-
-.hero-route-label > span:nth-child(1) { --base-op: 0.55; animation-delay: 0s; }
-.hero-route-label > span:nth-child(2) { --base-op: 0.42; animation-delay: 0.6s; }
-.hero-route-label > span:nth-child(3) { --base-op: 0.30; animation-delay: 1.2s; }
-.hero-route-label > span:nth-child(4) { --base-op: 0.18; animation-delay: 1.8s; }
-.hero-route-label > span:nth-child(5) { --base-op: 0.10; animation-delay: 2.4s; }
-
-@keyframes hero-waterfall {
-  0%   { opacity: var(--base-op); }
-  20%  { opacity: 1; }
-  50%  { opacity: var(--base-op); }
-  100% { opacity: var(--base-op); }
-}
-
-@media (max-width: 800px) {
-  .hero-route-text { left: 24px; bottom: 60px; width: clamp(100px, 22vw, 160px); }
-}
-
-/* ── Water ripple on hero label chars ── */
-.hero-route-label .char {
-  display: inline-block;
-  white-space: pre;
-  transition: transform 0s;
-}
-
-@keyframes char-ripple {
-  0%   { transform: translateY(0); }
-  20%  { transform: translateY(-10px); }
-  50%  { transform: translateY(4px); }
-  75%  { transform: translateY(-2px); }
-  100% { transform: translateY(0); }
-}
 </style>
 <style>#inspect-element-top-layer * { all: unset; }</style><script>"use strict";
 
@@ -2776,16 +2718,6 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
 
   <div class="hero-motion-group" id="heroMotionGroup" aria-hidden="true" style="transform: translateY(0px); opacity: 1;">
     <img src="./assets/Ship_ First Screen.svg" alt="" class="hero-ship-img">
-  </div>
-
-  <img src="./assets/Po neve.svg" alt="" class="hero-route-text" id="heroRouteText" aria-hidden="true">
-
-  <div class="hero-route-label" aria-hidden="true">
-    <span>В Петергоф по Неве</span>
-    <span>В Петергоф по Неве</span>
-    <span>В Петергоф по Неве</span>
-    <span>В Петергоф по Неве</span>
-    <span>В Петергоф по Неве</span>
   </div>
 
 </section>
@@ -3652,73 +3584,6 @@ function handleSubmit(e) {
 
 <div id="inspect-element-top-layer" popover="auto" data-inspect-element="inspectElement" style="pointer-events: none; border: unset; padding: 0px;"></div>
 
-<script>
-// ── Water ripple on hero label ──
-(function () {
-  const label = document.querySelector('.hero-route-label');
-  if (!label) return;
-
-  label.querySelectorAll(':scope > span').forEach(line => {
-    const text = line.textContent;
-    line.textContent = '';
-    [...text].forEach(ch => {
-      const s = document.createElement('span');
-      s.className = 'char';
-      s.textContent = ch;
-      line.appendChild(s);
-    });
-  });
-
-  const chars = [...label.querySelectorAll('.char')];
-  let lastIndex = -1;
-
-  function rippleFrom(index) {
-    chars.forEach((ch, i) => {
-      const dist = Math.abs(i - index);
-      if (dist > 6) return;
-      ch.style.animation = 'none';
-      void ch.offsetWidth;
-      ch.style.animation = `char-ripple 0.55s ease-out ${dist * 40}ms both`;
-    });
-  }
-
-  const hero = document.querySelector('.hero');
-  const THRESHOLD = 60;
-
-  (hero || document).addEventListener('mousemove', e => {
-    const mx = e.clientX, my = e.clientY;
-    let closest = -1, minDist = Infinity;
-
-    chars.forEach((ch, i) => {
-      const r = ch.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top  + r.height / 2;
-      const d  = Math.hypot(mx - cx, my - cy);
-      if (d < minDist) { minDist = d; closest = i; }
-    });
-
-    if (closest === -1 || minDist > THRESHOLD || closest === lastIndex) return;
-    lastIndex = closest;
-    rippleFrom(closest);
-  });
-})();
-
-(function () {
-  const path = document.getElementById('geo-map');
-  const section = document.querySelector('.what-layout');
-  if (!path || !section) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        path.classList.add('geo-running');
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-
-  observer.observe(section);
-})();
 </script>
 
 </body></html>
