@@ -2856,10 +2856,13 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
           <input type="text" id="position" required="">
         </div>
         <p class="form-badge-note">* Пожалуйста, обратите внимание, эти данные будут указаны на вашем бейдже</p>
+        <!--
         <div class="checkbox">
           <input type="checkbox" id="consent" required="">
           <label for="consent">Даю согласие на участие в мероприятии и обработку персональных данных <a href="./assets/SOPD GK Innotech.pdf" target="_blank" rel="noopener noreferrer">ООО «ГК «Иннотех»</a></label>
         </div>
+        -->
+
         <button type="submit" class="form-submit">
           Я в списках
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9 L15 9 M9 3 L15 9 L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -3343,7 +3346,8 @@ function handleSubmit(e) {
   const lastNameVal = document.getElementById('lastName').value.trim();
   const companyVal = document.getElementById('company').value.trim();
   const positionVal = document.getElementById('position').value.trim();
-  const consent = document.getElementById('consent').checked;
+  const consentEl = document.getElementById('consent');
+  const consent = consentEl ? consentEl.checked : true;
 
   if (!emailVal || !emailVal.includes('@')) {
     showError('email', 'Без кириллицы');
