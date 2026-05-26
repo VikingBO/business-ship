@@ -1055,6 +1055,10 @@ img { display: block; max-width: 100%; }
   align-items: stretch;
 }
 
+@media (max-width: 1199px) {
+  .partners-layout { grid-template-columns: 1fr; }
+}
+
 .partner-simple {
   padding: 56px 48px;
   display: flex;
@@ -1064,6 +1068,14 @@ img { display: block; max-width: 100%; }
 
 .partners-layout .partner-simple:first-child .partner-desc {
   margin-left: auto;
+}
+
+
+@media (max-width: 1199px) {
+  /* Edge-to-edge sections below 3-col desktop layout */
+  .section { padding-left: 0; padding-right: 0; }
+  .section::before, .section::after { display: none; }
+  .section-inner { padding-left: 16px; padding-right: 16px; }
 }
 
 .partner-ship-col {
@@ -1272,6 +1284,17 @@ img { display: block; max-width: 100%; }
   line-height: 1.55;
   color: var(--text-dim);
   max-width: 420px;
+}
+
+@media (max-width: 1199px) {
+  .partners-layout .partner-simple:first-child .partner-desc { margin-left: 0; }
+  .partner-desc { max-width: none; }
+  .partner-simple { padding: 24px 0; }
+  .partner-ship-col {
+    padding: 8px 0;
+    transform: none;
+    justify-content: center;
+  }
 }
 
 .partner-desc-secondary {
@@ -1704,12 +1727,20 @@ a.value:hover { color: var(--primary); }
   text-underline-offset: 4px;
 }
 
-@media (max-width: 900px) {
-  .footer { padding: 56px 24px 24px; }
-  .footer::before { left: 24px; }
-  .footer::after { right: 24px; }
-  .footer-row { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 12px; }
+@media (max-width: 768px) {
+  /* Mobile: stack everything */
+  .footer-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 0;
+  }
+  .footer-row::after { display: none; }
+  .footer-cell-right {
+    padding-left: 0;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
 }
 
 /* ============== REVEAL ============== */
@@ -1794,12 +1825,8 @@ a.value:hover { color: var(--primary); }
   .hero { padding: 64px 20px 16px; min-height: 90vh; }
   .hero::before { left: 20px; }
   .hero::after { right: 20px; }
-  .hero-actions { gap: 8px; width: 100%; }
-  .hero-actions .btn {
-    flex: 1 1 100%;
-    justify-content: center;
-    padding: 14px 20px;
-  }
+  .hero-actions { gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .hero-actions .btn { padding: 14px 20px; }
 
   /* What — stat cards stack */
   .what-grid { grid-template-columns: 1fr; gap: 10px; }
@@ -1813,25 +1840,18 @@ a.value:hover { color: var(--primary); }
 
   /* Who */
   .who-block { padding: 24px 20px; }
-  .who-block-title { margin-bottom: 14px; font-size: 20px; }
-  .who-row, .who-benefit-row { font-size: 17px; padding: 8px 0; }
-  .who-image-col { padding: 24px 20px; }
-  .who-image-col img { max-width: 240px; }
+  .who-block-title { margin-bottom: 14px; }
+  .who-row, .who-benefit-row { padding: 8px 0; }
 
   /* Program / route */
   .route { padding: 32px 0 32px; }
   .route-grid { row-gap: 24px; }
-  .route-time { font-size: 22px; }
-  .route-text { font-size: 16px; }
   .route-text br { display: none; }
 
 
   /* Partners — real layout used in markup is .partners-layout */
-  .partners-layout {
-    grid-template-columns: 1fr;
-  }
-  .partner-simple { padding: 16px 20px; gap: 16px; }
-  .partner-desc { font-size: 14px; max-width: none; }
+  .partner-simple { padding: 24px 0; gap: 16px; }
+  .partner-desc { max-width: none; }
   .partner-logo-img { height: 44px; }
   .partner-logo-img.gazprom { height: 36px; margin-left: 0; }
   .partner-logo-img.t1 { height: 28px; }
@@ -1843,20 +1863,14 @@ a.value:hover { color: var(--primary); }
 
   /* Form */
   .form-grid { grid-template-columns: 1fr; gap: 28px; }
-  .form-info h3 { font-size: clamp(26px, 6vw, 36px); }
   .form-info p { max-width: none; }
   .field { padding: 14px 0; }
-  .field input { font-size: 16px; /* avoid iOS auto-zoom */ }
-  .form-submit {
-    width: 100%;
-    padding: 18px 24px;
-    justify-content: space-between;
-  }
+  .form-submit { padding: 18px 24px; }
   .form-contact { grid-template-columns: 80px 1fr; gap: 16px; padding: 14px 0; }
-  .form-badge-note { font-size: 14px; }
 
   /* Footer */
-  .footer { padding: 48px 20px 24px; }
+  .footer { padding: 48px 0 24px; }
+  .footer-inner { padding: 0 16px; }
   .footer-brand { margin-bottom: 32px; padding-bottom: 24px; }
   .footer-brand img { height: 40px; }
   .footer-row { grid-template-columns: 1fr; gap: 20px; padding: 24px 0; }
@@ -1867,7 +1881,6 @@ a.value:hover { color: var(--primary); }
 
 /* Phones — 414 / 375 */
 @media (max-width: 480px) {
-  .section-title { font-size: clamp(26px, 8.5vw, 40px); }
 
   /* Nav */
   .nav { padding: 10px 16px; }
@@ -1892,7 +1905,7 @@ a.value:hover { color: var(--primary); }
   .hero-center { gap: 14px; padding-top: 32px; transform: translateY(-30px); }
   .hero-logo-img { width: min(80vw, 320px); }
   .hero-desc { font-size: 15px; max-width: 100%; padding: 0 6px; }
-  .btn { padding: 14px 18px; font-size: 14px; }
+  .btn { padding: 14px 18px; }
   .hero-scroll { margin-top: 24px; font-size: 10px; padding-bottom: 16px; }
 
   /* What */
@@ -1902,43 +1915,29 @@ a.value:hover { color: var(--primary); }
 
   /* Who */
   .who-block { padding: 20px 16px; }
-  .who-image-col { padding: 16px; }
-  .who-image-col img { max-width: 200px; }
-  .who-row, .who-benefit-row { font-size: 15px; }
 
   /* Program */
   .route-grid { grid-template-columns: 28px 1fr; column-gap: 14px; row-gap: 20px; }
   .route-stop::before { left: -22px; width: 12px; height: 12px; top: 22px; }
-  .route-time { font-size: 18px; }
-  .route-text { font-size: 14px; }
-  .route-place { font-size: 10px; }
 
   /* Partners */
-  .partner-simple { padding: 28px 16px; gap: 16px; }
-  .partner-desc { font-size: 13px; line-height: 1.5; }
-  .partner-tag { font-size: 10px; padding: 4px 8px 4px 0; margin-right: 8px; }
+  .partner-simple { padding: 20px 0; gap: 14px; }
+  .partner-desc { line-height: 1.5; }
+  .partner-tag { padding: 4px 8px 4px 0; margin-right: 8px; }
 
   /* Form */
   .form-grid { gap: 24px; }
-  .form-info h3 { font-size: 26px; line-height: 1; }
-  .form-info p { font-size: 14px; }
   .form-contact { grid-template-columns: 70px 1fr; gap: 12px; }
-  .form-contact .value { font-size: 14px; }
-  .field label { font-size: 10px; }
-  .form-submit { padding: 16px 18px; font-size: 14px; }
+  .form-submit { padding: 16px 18px; }
   .form-success { padding: 24px 16px; }
-  .form-success-title { font-size: 22px; }
 
   /* Footer */
-  .footer { padding: 40px 16px 20px; }
-  .footer-brand img { height: 32px; }
+  .footer { padding: 40px 0 20px; }
   .footer-cell-right { gap: 18px; }
-  .footer-cell .value { font-size: 14px; }
 }
 
 /* Extra-small phones — 320 / 360 */
 @media (max-width: 375px) {
-  .section-title { font-size: clamp(22px, 8vw, 32px); }
 
   .nav { padding: 8px 14px; gap: 8px; }
   .nav-cta { padding: 7px 10px; }
@@ -1948,7 +1947,7 @@ a.value:hover { color: var(--primary); }
   .hero::after { right: 14px; }
   .hero-logo-img { width: 78vw; }
   .hero-desc { font-size: 14px; }
-  .btn { padding: 13px 16px; font-size: 13px; }
+  .btn { padding: 13px 16px; }
 
   .tag-grid { grid-template-columns: 1fr 1fr; }
   .tag-box { padding: 16px 6px; }
@@ -1956,14 +1955,8 @@ a.value:hover { color: var(--primary); }
   .stat { padding: 20px 16px; }
   .stat-num { font-size: clamp(48px, 17vw, 64px); }
 
-  .who-image-col img { max-width: 170px; }
 
-  .route-time { font-size: 16px; }
-  .route-text { font-size: 13px; }
-
-  .form-info h3 { font-size: 22px; }
-  .field input { font-size: 16px; }
-  .form-submit { padding: 14px 16px; font-size: 13px; }
+  .form-submit { padding: 14px 16px; }
 
   .footer-cell-right { flex-direction: column; gap: 14px; }
 }
@@ -2026,17 +2019,21 @@ a.value:hover { color: var(--primary); }
     margin-right: -16px;
   }
 
-  /* All content CTA buttons stretch full-width on mobile */
+  /* CTA buttons: content-sized with comfortable max (UX best practice ~150–320px) */
   .btn {
-    display: flex;
-    width: 100%;
+    display: inline-flex;
+    width: auto;
+    max-width: 320px;
     justify-content: center;
     text-align: center;
   }
   .form-submit {
-    width: 100%;
+    width: auto;
+    max-width: 320px;
     justify-content: space-between;
   }
+  .hero-actions { justify-content: center; }
+  #routeExit { text-align: center; }
 
   /* Typography — unified scale */
   .section-title,
@@ -2052,10 +2049,8 @@ a.value:hover { color: var(--primary); }
     font-size: var(--m-h2);
     line-height: 1.15;
   }
-  .manifesto-main {
-    font-size: var(--m-h3);
-    line-height: 1.3;
-  }
+  /* manifesto stays on its own scale: layout (line breaks) must hold,
+     so font must shrink enough to fit longest line at 320px */
   .who-row,
   .who-benefit-row,
   .stat-text,
@@ -2064,6 +2059,7 @@ a.value:hover { color: var(--primary); }
   .form-info p,
   .field input,
   .form-submit,
+  .btn,
   .footer-cell .value,
   .footer-cell a.value,
   .form-contact .value {
