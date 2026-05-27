@@ -1273,9 +1273,9 @@ img { display: block; max-width: 100%; }
 @media (max-width: 1199px) {
   .partners-layout .partner-simple:first-child .partner-desc { margin-left: 0; }
   .partner-desc { max-width: none; }
-  .partner-simple { padding: 24px 0; }
+  .partner-simple { padding: 24px var(--m-gutter); }
   .partner-ship-col {
-    padding: 8px 0;
+    padding: 8px var(--m-gutter);
     transform: none;
     justify-content: center;
   }
@@ -1339,7 +1339,7 @@ img { display: block; max-width: 100%; }
 .manifesto-main {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(10px, 4vw, 32px);
+  font-size: clamp(9px, 3.2vw, 32px);
   line-height: 1.3;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -1364,7 +1364,7 @@ img { display: block; max-width: 100%; }
 
 .manifesto-lead,
 .manifesto-route-copy {
-  margin-bottom: 18px;
+  margin-bottom: clamp(8px, 1.8vw, 18px);
 }
 
 .manifesto-main em {
@@ -1703,8 +1703,8 @@ a.value:hover { color: var(--primary); }
 a.value:hover { color: var(--primary); }
 
 .footer-bottom {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   padding-top: 32px;
   font-family: var(--font-mono);
@@ -1718,6 +1718,8 @@ a.value:hover { color: var(--primary); }
   color: var(--text-dim);
   text-decoration: underline;
   text-underline-offset: 4px;
+  padding-left: 48px;  /* match .footer-cell-right padding-left so Privacy aligns with Phone column */
+  justify-self: start;
 }
 
 @media (max-width: 768px) {
@@ -1733,7 +1735,8 @@ a.value:hover { color: var(--primary); }
     gap: 32px;
     flex-wrap: wrap;
   }
-  .footer-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .footer-bottom { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+  .footer-bottom a { padding-left: 0; }
 }
 
 /* ============== REVEAL ============== */
@@ -1871,7 +1874,12 @@ a.value:hover { color: var(--primary); }
   .what-grid { grid-template-columns: 1fr; gap: 10px; }
   .stat { min-height: auto; padding: 24px 20px; gap: 14px; }
   .stat-num { font-size: clamp(56px, 14vw, 80px); }
-  .stat-text { max-width: none; }
+  /* Always 2 lines on mobile: shrink font so the longest copy fits in two lines */
+  .stat-text {
+    max-width: none;
+    font-size: clamp(12px, 3.6vw, 15px);
+    text-wrap: balance;
+  }
 
   /* Tag grid: 4 → 2 columns */
   .tag-grid { grid-template-columns: repeat(2, 1fr); margin-top: 24px; }
@@ -1889,7 +1897,7 @@ a.value:hover { color: var(--primary); }
 
 
   /* Partners — real layout used in markup is .partners-layout */
-  .partner-simple { padding: 24px 0; gap: 16px; }
+  .partner-simple { padding: 24px var(--m-gutter); gap: 16px; }
   .partner-desc { max-width: none; }
   .partner-logo-img { height: 44px; }
   .partner-logo-img.gazprom { height: 36px; margin-left: 0; }
@@ -1915,7 +1923,8 @@ a.value:hover { color: var(--primary); }
   .footer-row { grid-template-columns: 1fr; gap: 20px; padding: 24px 0; }
   .footer-row::after { display: none; }
   .footer-cell-right { padding-left: 0; gap: 24px; flex-wrap: wrap; }
-  .footer-bottom { flex-direction: column; gap: 10px; align-items: flex-start; text-align: left; padding-top: 20px; }
+  .footer-bottom { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; padding-top: 20px; }
+  .footer-bottom a { padding-left: 0; }
 }
 
 /* Phones — 414 / 375 */
@@ -1957,7 +1966,7 @@ a.value:hover { color: var(--primary); }
   .route-stop::before { left: -22px; width: 12px; height: 12px; top: 22px; }
 
   /* Partners */
-  .partner-simple { padding: 20px 0; gap: 14px; }
+  .partner-simple { padding: 20px var(--m-gutter); gap: 14px; }
   .partner-desc { line-height: 1.5; }
   .partner-tag { padding: 4px 8px 4px 0; margin-right: 8px; }
 
@@ -2082,7 +2091,6 @@ a.value:hover { color: var(--primary); }
      so font must shrink enough to fit longest line at 320px */
   .who-row,
   .who-benefit-row,
-  .stat-text,
   .partner-desc,
   .route-text,
   .form-info p,
@@ -3153,7 +3161,7 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
           <img src="./assets/GPN.svg" alt="GPN" class="partner-logo-img gazprom">
         </div>
         <p class="partner-desc">
-          ООО «Газпромнефть — Цифровые решения» разрабатывает и внедряет ИТ-продукты для крупного бизнеса. Берем на себя полный цикл: от анализа до запуска и поддержки. Работаем с промышленностью и ТЭК, где важны надежность и непрерывность процессов.<span class="partner-desc-secondary">Делаем системы для управления производством, ТОиР, мониторинга оборудования и цепочек поставок. Автоматизируем процессы и связываем системы между собой.</span>
+          ООО «Газпромнефть — Цифровые решения» разрабатывает и внедряет ИТ-продукты для крупного бизнеса. Берем на себя полный цикл: от анализа до запуска и поддержки. Работаем с промышленностью и ТЭК, где&nbsp;важны надежность и непрерывность процессов.<span class="partner-desc-secondary">Делаем системы для управления производством, ТОиР, мониторинга оборудования и цепочек поставок. Автоматизируем процессы и связываем системы между собой.</span>
         </p>
       </div>
 
@@ -3261,7 +3269,7 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 · Цифроход · Бизнес-круиз</span>
+      <span>© 2026 Цифроход Бизнес-круиз</span>
       <a href="#">Политика конфиденциальности</a>
     </div>
   </div>
