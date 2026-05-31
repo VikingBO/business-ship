@@ -1586,40 +1586,27 @@ a.value:hover { color: var(--primary); }
 .form-success {
   display: none;
   grid-column: 1 / -1;
-  padding: 40px 44px;
-  border: 1px solid var(--primary);
-  background: rgba(231, 240, 175, 0.08);
-  font-family: var(--font-body);
-  font-size: var(--type-t3);
-  line-height: 1.6;
-  color: var(--primary);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .form-success.is-visible {
-  display: block;
-}
-
-.form-success-title {
-  display: block;
-  margin-bottom: 14px;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: var(--type-heading-md);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  color: var(--primary);
+  display: flex;
 }
 
 .form-success-text {
-  max-width: 760px;
+  margin: 0;
+  max-width: 720px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: var(--type-heading-sm);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--neutral);
 }
 
-@media (max-width: 900px) {
-  .form-success {
-    padding: 28px 24px;
-  }
-}
+.form-success-text em { font-style: normal; color: var(--primary); }
 
 @media (max-width: 900px) {
   .form-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1981,7 +1968,6 @@ a.value:hover { color: var(--primary); }
   .form-grid { gap: 24px; }
   .form-contact { grid-template-columns: 70px 1fr; gap: 12px; }
   .form-submit { padding: 16px 18px; }
-  .form-success { padding: 24px 16px; }
 
   /* Footer */
   .footer { padding: 40px 0 20px; }
@@ -2082,8 +2068,7 @@ a.value:hover { color: var(--primary); }
 
   /* Typography — unified scale */
   .section-title,
-  .about-big h3,
-  .form-success-title {
+  .about-big h3 {
     font-size: var(--m-h1);
     line-height: 1;
   }
@@ -2093,6 +2078,10 @@ a.value:hover { color: var(--primary); }
   .form-info h3 {
     font-size: var(--m-h2);
     line-height: 1.15;
+  }
+  .form-success {
+    align-items: flex-start;
+    text-align: left;
   }
   /* manifesto stays on its own scale: layout (line breaks) must hold,
      so font must shrink enough to fit longest line at 320px */
@@ -3252,7 +3241,6 @@ window.__TWEAKS_DEFAULTS = /*EDITMODE-BEGIN*/{
         </button>
       </form>
       <div class="form-success" id="formSuccess" role="alert" aria-live="assertive" aria-atomic="true">
-        <span class="form-success-title">Заявка отправлена</span>
         <p class="form-success-text">Спасибо, ваша заявка отправлена на модерацию. Дождитесь подтверждения регистрации на указанный вами электронный адрес в течение 3х дней.</p>
       </div>
     </div>
@@ -3650,11 +3638,13 @@ function handleSubmit(e) {
   e.preventDefault();
 
   const formGrid = document.querySelector('#form .form-grid');
+  const sectionTitle = document.querySelector('#form .section-title');
   document.querySelectorAll('#leadForm .field.error').forEach(f => f.classList.remove('error'));
   document.querySelectorAll('#leadForm .field-error').forEach(f => f.remove());
   const success = document.getElementById('formSuccess');
   if (success) success.classList.remove('is-visible');
   if (formGrid) formGrid.classList.remove('is-submitted');
+  if (sectionTitle) sectionTitle.innerHTML = 'Подтвердите <em>участие</em>';
 
   let valid = true;
 
@@ -3696,6 +3686,7 @@ function handleSubmit(e) {
 
   e.target.reset();
   if (formGrid) formGrid.classList.add('is-submitted');
+  if (sectionTitle) sectionTitle.innerHTML = 'Заявка <em>отправлена</em>';
   if (success) {
     success.classList.add('is-visible');
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
